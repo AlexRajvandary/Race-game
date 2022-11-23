@@ -5,11 +5,11 @@ namespace Assets.Script
 {
     public class Controls : MonoBehaviour
     {
-        public float SideSpeed { get; set; } = 0f;
+        public float SideSpeed = 0f;
 
-        public float Speed { get; set; } = 0f;
+        public float Speed = 0f;
 
-        public float MaxSpeed { get; set; } = 0.5f;
+        public float MaxSpeed = 0.5f;
         
         private void Start()
         {

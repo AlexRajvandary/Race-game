@@ -13,17 +13,12 @@ namespace Assets.Script
         private bool isAlive = true;
         private bool isKilled = false;
 
-        public GameObject BrokenPrefab { get; set; }
-
-        public GameObject Car { get; set; }
-
-        public Controls Controls { get; set; }
-
-        public GameObject ModelHolder { get; set; }
-
-        public Rigidbody RigidBody { get; set; }
-
-        public List<GameObject> Wheels { get; set; }
+        public GameObject BrokenPrefab;
+        public GameObject Car;
+        public Controls Controls;
+        public GameObject ModelHolder;
+        public Rigidbody RigidBody;
+        public List<GameObject> Wheels;
 
         private void Start()
         {
@@ -36,6 +31,12 @@ namespace Assets.Script
             {
                 var newSpeed = speed;
                 var sideSpeed = 0f;
+
+                if (Controls != null)
+                {
+                    newSpeed += Controls.Speed;
+                    sideSpeed = Controls.SideSpeed;
+                }
 
                 if (newSpeed > maxSpeed)
                 {
@@ -54,7 +55,7 @@ namespace Assets.Script
                     Controls.SideSpeed = 0f;
                 }
 
-                if (Wheels.Count > 0)
+                if (Wheels?.Count > 0)
                 {
                     foreach (var wheel in Wheels)
                     {
@@ -62,7 +63,7 @@ namespace Assets.Script
                     }
                 }
 
-                if (tag == "Car")
+                if (CompareTag("Car"))
                 {
                     if (transform.position.y < -50f)
                     {
